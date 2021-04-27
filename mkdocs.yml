@@ -1,0 +1,8 @@
+site_name: "api-transferencia"
+site_description: "Backstage integration - springboot"
+
+nav:
+  - Introduction: index.md
+
+plugins:
+  - techdocs-core

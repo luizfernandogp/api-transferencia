@@ -1,0 +1,61 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "api-transferencia"
+  description: "Backstage integration - springboot"
+  tags:
+    - java
+  annotations:
+    github.com/project-slug: luizfernandogp/api-transferencia
+    backstage.io/techdocs-ref: url:https://github.com/luizfernandogp/api-transferencia
+    #backstage.io/kubernetes-id: ms-produto
+    #backstage.io/kubernetes-label-selector: 'app: api-transferencia'
+    backstage.io/kubernetes-label-selector: 'component=ms-produto'
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "guest"
+  providesApis:
+    - "api-transferencia"
+  
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: "api-transferencia"
+  description: "Backstage integration - springboot"
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: user:guest
+  definition: |
+    openapi: 3.0.1
+    info:
+      title: OpenAPI definition
+      version: v0
+    servers:
+    - url: http://kong/produto/api-documentation
+      description: Generated server url
+    paths:
+      /demo:
+        get:
+          tags:
+          - demo-controller-impl
+          summary: Retorna uma String com valor Hello concatenada com o valor passado
+            por parâmetro no request
+          operationId: hello
+          parameters:
+          - name: param
+            in: query
+            required: true
+            schema:
+              type: string
+          responses:
+            "200":
+              description: Hello + valor passado por parâmetro
+              content:
+                '*/*':
+                  schema:
+                    type: string
+    components: {}
